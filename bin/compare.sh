@@ -27,6 +27,11 @@ main() {
     BASE_BRANCH=master
   fi
 
+  if [ "$CURRENT_BRANCH" = "master" ]; then
+    BASE_BRANCH=master
+    CURRENT_BRANCH=development
+  fi
+
   REMOTE=$(git ls-remote --get-url | awk 'BEGIN{FS=":";}{print $2}' | sed 's/\.git//')
 
   REPO_URL=https://www.github.com/$REMOTE/compare/$BASE_BRANCH...$CURRENT_BRANCH
